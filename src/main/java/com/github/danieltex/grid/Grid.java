@@ -28,7 +28,7 @@ public class Grid implements Iterable<Cell> {
         StringBuilder output = new StringBuilder();
 
         output.append('+');
-        for (Cell cell : grid.get(0)) {
+        for (int i = 0; i < columns; i++) {
             output.append("---+");
         }
         output.append('\n');
