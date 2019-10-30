@@ -11,7 +11,10 @@ public class App
 {
     public static void main( String[] args )
     {
-        Grid grid = new Grid(4, 4);
+        int rows = Integer.parseInt(args[0]);
+        int cols = Integer.parseInt(args[1]);
+
+        Grid grid = new Grid(rows, cols);
         System.out.println(BinaryTree.on(grid));
     }
 }
