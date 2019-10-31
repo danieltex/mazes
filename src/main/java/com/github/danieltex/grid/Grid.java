@@ -78,7 +78,8 @@ public class Grid implements Iterable<Cell> {
             StringBuilder bottom = new StringBuilder().append('+');
             for (Cell cell : row) {
                 if (cell == null) cell = new Cell(-1, -1);
-                top.append("   ");
+                String body = String.format(" %s ", contentsOf(cell));
+                top.append(body);
                 top.append(cell.isLinked(cell.east) ? ' ': '|');                
                 bottom.append(cell.isLinked(cell.south) ? "   ": "---");
                 bottom.append('+');
@@ -143,5 +144,9 @@ public class Grid implements Iterable<Cell> {
             cell.west = cellAt(cell.row, cell.column - 1);
             cell.east = cellAt(cell.row, cell.column + 1);
         }
+    }
+
+    protected String contentsOf(Cell cell) {
+        return " ";
     }
 }

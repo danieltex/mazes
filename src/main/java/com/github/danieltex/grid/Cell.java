@@ -1,6 +1,7 @@
 package com.github.danieltex.grid;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -51,7 +52,7 @@ public class Cell {
     }
 
     public Set<Cell> links() {
-        return new HashSet<>(links);
+        return Collections.unmodifiableSet(links);
     }
 
     public boolean isLinked(Cell cell) {
@@ -65,6 +66,33 @@ public class Cell {
         if (east  != null) neighbors.add(east);
         if (west  != null) neighbors.add(west);
         return neighbors;
+    }
+
+
+    /**
+     *  Dijkstra's algorithm
+     * @return the distances to this cell
+     */
+    public Distances distances() {
+        Distances distances = new Distances(this);
+
+        List<Cell> frontier = new ArrayList<>();
+        frontier.add(this);
+
+        while (!frontier.isEmpty()) {
+            List<Cell> newFrontier = new ArrayList<>();
+            for (Cell cell : frontier) {
+                for (Cell neighbor : cell.links()) {
+                    if (distances.get(neighbor) != null) continue;
+                    int neighborDistance = distances.get(cell) + 1;
+                    distances.put(neighbor, neighborDistance);
+                    newFrontier.add(neighbor);
+                }
+            }
+            frontier = newFrontier;
+        }
+
+        return distances;
     }
 }
 

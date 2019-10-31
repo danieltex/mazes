@@ -8,6 +8,8 @@ import javax.imageio.ImageIO;
 
 import com.github.danieltex.algorithms.BinaryTree;
 import com.github.danieltex.algorithms.SideWinder;
+import com.github.danieltex.grid.Cell;
+import com.github.danieltex.grid.DistanceGrid;
 import com.github.danieltex.grid.Grid;
 
 /**
@@ -22,19 +24,23 @@ public class App
         int cols = Integer.parseInt(args[2]);
         String filepath = args[3];
 
-        Grid grid = new Grid(rows, cols);
+        DistanceGrid grid = new DistanceGrid(rows, cols);
 
         switch(algorithm) {
             case "SIDEWINDER":
-                System.out.println(SideWinder.on(grid));
+                SideWinder.on(grid);
                 break;
             case "BINARYTREE":
-                System.out.println(BinaryTree.on(grid));
+                BinaryTree.on(grid);
                 break;
             default:
                 System.out.println("Unknow option: " + args[0]);
                 break;
         }
+
+        Cell start = grid.cellAt(0, 0);
+        grid.setDistances(start.distances());
+        System.out.println(grid);
 
         BufferedImage img = grid.toPng(30);
 
