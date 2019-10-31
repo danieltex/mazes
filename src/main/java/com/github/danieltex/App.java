@@ -9,13 +9,9 @@ import javax.imageio.ImageIO;
 import com.github.danieltex.algorithms.BinaryTree;
 import com.github.danieltex.algorithms.SideWinder;
 import com.github.danieltex.grid.Cell;
+import com.github.danieltex.grid.Distances;
 import com.github.danieltex.grid.DistanceGrid;
-import com.github.danieltex.grid.Grid;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args ) {
@@ -39,9 +35,15 @@ public class App
         }
 
         Cell start = grid.cellAt(0, 0);
+        Distances distances = start.distances();
         grid.setDistances(start.distances());
         System.out.println(grid);
+        Cell goal = grid.cellAt(rows - 1, 0);
 
+        Distances goalDistances = distances.pathTo(goal);
+        grid.setDistances(goalDistances);
+        System.out.println(String.format("Path to (%d, %d)", rows-1, cols-1));
+        System.out.println(grid);
         BufferedImage img = grid.toPng(30);
 
         try {

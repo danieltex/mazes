@@ -24,4 +24,21 @@ public class Distances {
     public Set<Cell> cells() {
         return cells.keySet();
     }
+
+    public Distances pathTo(Cell goal) {
+        Cell current = goal;
+        Distances breadcrumbs = new Distances(root);
+        breadcrumbs.put(current, cells.get(current));
+
+        while (current != root) {
+            for (Cell neighbor : current.links()) {
+                if (cells.get(neighbor) < cells.get(current)) {
+                    breadcrumbs.put(neighbor, cells.get(neighbor));
+                    current = neighbor;
+                    break;
+                }
+            }
+        }
+        return breadcrumbs;
+    }
 }
