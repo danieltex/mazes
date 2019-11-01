@@ -34,17 +34,31 @@ public class App
                 break;
         }
 
+        // all distance from northwestest cell
         Cell start = grid.cellAt(0, 0);
         Distances distances = start.distances();
         grid.setDistances(start.distances());
         System.out.println(grid);
-        Cell goal = grid.cellAt(rows - 1, 0);
 
+        // print dijkstra from northwestest to southwestest
+        Cell goal = grid.cellAt(rows - 1, 0);
         Distances goalDistances = distances.pathTo(goal);
         grid.setDistances(goalDistances);
         System.out.println(String.format("Path to (%d, %d)", rows-1, cols-1));
         System.out.println(grid);
         BufferedImage img = grid.toPng(30);
+
+        // max path
+        Cell maxStart = goalDistances.max();
+        Distances maxStartDistances = maxStart.distances();
+
+        Cell maxEnd = maxStartDistances.max();
+        Distances maxStartEndDistances = maxStartDistances.pathTo(maxEnd);
+
+        grid.setDistances(maxStartEndDistances);
+
+        System.out.println("Max path:");
+        System.out.println(grid);
 
         try {
             ImageIO.write(img, "png", new File(filepath));

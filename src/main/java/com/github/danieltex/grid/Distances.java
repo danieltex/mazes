@@ -3,6 +3,7 @@ package com.github.danieltex.grid;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
 public class Distances {
     private final Cell root;
@@ -40,5 +41,17 @@ public class Distances {
             }
         }
         return breadcrumbs;
+    }
+
+    public Cell max() {
+        int maxDistance = -1;
+        Cell maxCell = null;
+        for (Entry<Cell, Integer> pair : cells.entrySet()) {
+            if (pair.getValue() > maxDistance) {
+                maxDistance = pair.getValue();
+                maxCell = pair.getKey();
+            }
+        }
+        return maxCell;
     }
 }
