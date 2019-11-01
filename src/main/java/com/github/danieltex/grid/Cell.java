@@ -22,6 +22,9 @@ public class Cell {
         this.column = column;
     }
 
+    public int getRow()    { return row;    }
+    public int getColumn() { return column; }
+
     public Cell north() { return north; }
     public Cell south() { return south; }
     public Cell west()  { return west;  }
