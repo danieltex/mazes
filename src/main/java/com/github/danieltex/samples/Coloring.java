@@ -29,7 +29,7 @@ public class Coloring {
             ImageIO.write(img, "png", new File(filename));
             System.out.println("Saved to " + filename);
         } catch(IOException ex) {
-            System.out.println("Faile to write to " + filename);
+            System.out.println("Failed to save to " + filename);
             ex.printStackTrace();
         }
         

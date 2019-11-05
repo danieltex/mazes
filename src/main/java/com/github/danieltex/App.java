@@ -62,8 +62,9 @@ public class App
 
         try {
             ImageIO.write(img, "png", new File(filepath));
+            System.out.println("Saved to " + filepath);
         } catch (IOException e) {
-            System.out.println("Failed to write file to " + filepath);
+            System.out.println("Failed to save to " + filepath);
             e.printStackTrace();
         }
     }
