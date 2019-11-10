@@ -2,7 +2,6 @@ package com.github.danieltex.samples;
 
 import javax.imageio.ImageIO;
 
-import com.github.danieltex.algorithms.BinaryTree;
 import com.github.danieltex.algorithms.SideWinder;
 import com.github.danieltex.grid.Cell;
 import com.github.danieltex.grid.ColoredGrid;

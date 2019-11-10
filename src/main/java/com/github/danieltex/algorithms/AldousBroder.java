@@ -1,8 +1,6 @@
 package com.github.danieltex.algorithms;
 
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 import com.github.danieltex.grid.Cell;
 import com.github.danieltex.grid.Grid;
