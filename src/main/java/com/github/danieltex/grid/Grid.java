@@ -15,9 +15,12 @@ import java.awt.image.BufferedImage;
 
 public class Grid implements Iterable<Cell> {
     public static final int DEFAULT_CELL_SIZE = 10;
+    public static final int DEFAULT_WALL_WIDTH = 1;
     
     private static final String BACKGROUNDS = "backgrounds";
     private static final String WALLS = "walls";
+    private static final Color BACKGROUND_COLOR = Color.WHITE;
+    private static final Color WALL_COLOR = Color.BLACK;
 
     public final int rows;
     public final int columns;
@@ -33,18 +36,25 @@ public class Grid implements Iterable<Cell> {
         configureCells();
     }
 
-    public BufferedImage toPng(int cellSize) {
-        final int border = 1;
-        final int imgWidth = cellSize * columns + 1 + border * 2;
-        final int imgHeight = cellSize * rows + 1 + border * 2;
-        
-        Color background = Color.WHITE;
-        Color wall = Color.BLACK;
+    /**
+     * cell size includes wall width
+     * interior of the cell is (cell size - wall width)
+     * So for a cell of size 30 and a wall of width 5
+     * we will have the interior equals to 25
+     * @param cellSize
+     * @param wallWidth
+     * @return
+     */
+    public BufferedImage toPng(int cellSize, int wallWidth) {
+        final int border = wallWidth;
+        final int margin = wallWidth;
+        final int imgWidth = cellSize * columns + wallWidth + margin * 2;
+        final int imgHeight = cellSize * rows + wallWidth + margin * 2;
         
         BufferedImage img = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = img.createGraphics();
-        g.setColor(background);
-        g.fillRect(0, 0, imgWidth+2, imgHeight+2);
+        g.setColor(BACKGROUND_COLOR);
+        g.fillRect(0, 0, imgWidth, imgHeight);
 
         for (String mode : Arrays.asList(BACKGROUNDS, WALLS)) {
             for (Cell cell : allCells()) {
@@ -62,11 +72,11 @@ public class Grid implements Iterable<Cell> {
                     }
                 } else {
                     // draw walls
-                    g.setColor(wall);
-                    if (cell.north == null)         g.drawLine(x1, y1, x2, y1);
-                    if (cell.west  == null)         g.drawLine(x1, y1, x1, y2);
-                    if (!cell.isLinked(cell.east))  g.drawLine(x2, y1, x2, y2);
-                    if (!cell.isLinked(cell.south)) g.drawLine(x1, y2, x2, y2);
+                    g.setColor(WALL_COLOR);
+                    if (cell.north == null)         g.fillRect(x1, y1, cellSize + border, border);
+                    if (cell.west  == null)         g.fillRect(x1, y1, border, cellSize + border);
+                    if (!cell.isLinked(cell.east))  g.fillRect(x2, y1, border, cellSize + border);
+                    if (!cell.isLinked(cell.south)) g.fillRect(x1, y2, cellSize + border, border);
                 }
             }
         }
@@ -75,8 +85,12 @@ public class Grid implements Iterable<Cell> {
         return img;
     }
 
+    public BufferedImage toPng(int cellSize) {
+        return toPng(cellSize, DEFAULT_WALL_WIDTH);
+    }
+
     public BufferedImage toPng() {
-        return toPng(DEFAULT_CELL_SIZE);
+        return toPng(DEFAULT_CELL_SIZE, DEFAULT_WALL_WIDTH);
     }
 
     @Override
