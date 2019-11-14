@@ -7,7 +7,7 @@ import java.util.Random;
 import com.github.danieltex.grid.Cell;
 import com.github.danieltex.grid.Grid;
 
-public class Wilsons {    
+public class Wilsons {
     private static Random rand;
 
     public static Grid on(Grid grid) {
