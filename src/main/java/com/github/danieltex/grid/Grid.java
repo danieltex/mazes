@@ -155,6 +155,12 @@ public class Grid implements Iterable<Cell> {
         return rows * columns;
     }
 
+    public List<Cell> deadEnds() {
+        return allCells().stream()
+            .filter(cell -> cell.links().size() == 1)
+            .collect(toList());
+    }
+
     private List<List<Cell>> prepareGrid() {
         List<List<Cell>> rowList = new ArrayList<>();
         for (int i = 0; i < rows; i++) {
