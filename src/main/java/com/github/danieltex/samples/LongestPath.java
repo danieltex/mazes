@@ -8,8 +8,8 @@ import com.github.danieltex.grid.DistanceGrid;
 public class LongestPath 
 {
     public static void main( String[] args ) {
-        int rows = 6;
-        int columns = 6;
+        int rows = 30;
+        int columns = 30;
         DistanceGrid grid = new DistanceGrid(rows, columns);
         BinaryTree.on(grid);
 
@@ -28,5 +28,7 @@ public class LongestPath
         grid.setDistances(newDistances.pathTo(goal));
 
         System.out.println(grid);
+
+        System.out.println("Dead ends: " + grid.deadEnds().size());
     }
 }

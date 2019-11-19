@@ -10,10 +10,10 @@ import com.github.danieltex.grid.Cell;
 import com.github.danieltex.grid.ColoredGrid;
 import com.github.danieltex.grid.Distances;
 
-public class WilsonsSample {
+public class WilsonsDemo {
     public static void main(String[] args) {
-        final int rows = 20;
-        final int columns = 20;
+        final int rows = 30;
+        final int columns = 30;
         ColoredGrid grid = new ColoredGrid(rows, columns);
         Wilsons.on(grid);
 
@@ -28,5 +28,7 @@ public class WilsonsSample {
             System.out.println("Failed to save to " + pathname);
             e.printStackTrace();
         }
+
+        System.out.println("Dead ends: " + grid.deadEnds().size());
     }
 }

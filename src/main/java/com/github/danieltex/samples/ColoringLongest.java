@@ -13,8 +13,8 @@ import java.io.IOException;
 
 public class ColoringLongest {
     public static void main(String[] args) {
-        final int rows = 50;
-        final int columns = 50;
+        final int rows = 30;
+        final int columns = 30;
         final ColoredGrid grid = new ColoredGrid(rows, columns);
         SideWinder.on(grid);
         
@@ -38,5 +38,6 @@ public class ColoringLongest {
             ex.printStackTrace();
         }
         
+        System.out.println("Dead ends: " + grid.deadEnds().size());
     }
 }

@@ -10,7 +10,7 @@ import com.github.danieltex.grid.Cell;
 import com.github.danieltex.grid.ColoredGrid;
 import com.github.danieltex.grid.Distances;
 
-public class AldousBroderSample {
+public class AldousBroderDemo {
     public static void main(String[] args) {
         final int rows = 30;
         final int columns = 30;
@@ -28,5 +28,7 @@ public class AldousBroderSample {
             System.out.println("Failed to save to " + pathname);
             e.printStackTrace();
         }
+
+        System.out.println("Dead ends: " + grid.deadEnds().size());
     }
 }
