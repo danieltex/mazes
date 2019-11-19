@@ -1,11 +1,12 @@
 package com.github.danieltex.samples;
 
+import static com.github.danieltex.algorithms.MazeCarvers.BINARY_TREE;
+
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.github.danieltex.algorithms.BinaryTree;
 import com.github.danieltex.grid.Cell;
 import com.github.danieltex.grid.ColoredGrid;
 import com.github.danieltex.grid.Distances;
@@ -15,7 +16,7 @@ public class BinaryTreeDemo {
         final int rows = 30;
         final int columns = 30;
         ColoredGrid grid = new ColoredGrid(rows, columns);
-        BinaryTree.on(grid);
+        BINARY_TREE.on(grid);
 
         Cell start = grid.cellAt(rows/2, columns/2);
         Distances d = start.distances();

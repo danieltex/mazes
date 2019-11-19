@@ -7,11 +7,10 @@ import java.util.Random;
 import com.github.danieltex.grid.Cell;
 import com.github.danieltex.grid.Grid;
 
-public class Wilsons {
-    private static Random rand;
+class Wilsons implements MazeCarver {
+    private Random rand = new Random();
 
-    public static Grid on(Grid grid) {
-        rand = new Random();
+    public Grid on(Grid grid) {
         List<Cell> unvisited = new ArrayList<>(grid.allCells());
         Cell first = sample(unvisited);
         unvisited.remove(first);
@@ -40,7 +39,7 @@ public class Wilsons {
         return grid;
     }
 
-    private static Cell sample(List<Cell> cells) {
+    private Cell sample(List<Cell> cells) {
         int index = rand.nextInt(cells.size());
         return cells.get(index);
     }

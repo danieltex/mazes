@@ -8,10 +8,10 @@ import java.util.Random;
 import com.github.danieltex.grid.Cell;
 import com.github.danieltex.grid.Grid;
 
-public class HuntAndKill {
-    private static Random rand;
-    public static Grid on(Grid grid) {
-        rand = new Random();
+class HuntAndKill implements MazeCarver {
+    private Random random = new Random();
+
+    public Grid on(Grid grid) {
         Cell current = grid.randomCell();
 
         while (current != null) {
@@ -43,8 +43,8 @@ public class HuntAndKill {
         return grid;
     }
 
-    private static Cell sample(List<Cell> cells) {
-        int index = rand.nextInt(cells.size());
+    private Cell sample(List<Cell> cells) {
+        int index = random.nextInt(cells.size());
         return cells.get(index);
     }
 }

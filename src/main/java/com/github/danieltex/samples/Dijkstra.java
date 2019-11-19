@@ -1,6 +1,7 @@
 package com.github.danieltex.samples;
 
-import com.github.danieltex.algorithms.SideWinder;
+import static com.github.danieltex.algorithms.MazeCarvers.SIDE_WINDER;
+
 import com.github.danieltex.grid.Cell;
 import com.github.danieltex.grid.Distances;
 import com.github.danieltex.grid.DistanceGrid;
@@ -10,7 +11,7 @@ public class Dijkstra {
         int rows = 6;
         int columns = 6;
         DistanceGrid grid = new DistanceGrid(rows, columns);
-        SideWinder.on(grid);
+        SIDE_WINDER.on(grid);
 
         // all distance from northwestest cell
         Cell start = grid.cellAt(0, 0);

@@ -1,6 +1,8 @@
 package com.github.danieltex.samples;
 
-import com.github.danieltex.algorithms.BinaryTree;
+
+import static com.github.danieltex.algorithms.MazeCarvers.BINARY_TREE;
+
 import com.github.danieltex.grid.Cell;
 import com.github.danieltex.grid.Distances;
 import com.github.danieltex.grid.DistanceGrid;
@@ -11,7 +13,7 @@ public class LongestPath
         int rows = 30;
         int columns = 30;
         DistanceGrid grid = new DistanceGrid(rows, columns);
-        BinaryTree.on(grid);
+        BINARY_TREE.on(grid);
 
         // all distance from northwestest cell
         Cell start = grid.cellAt(0, 0);

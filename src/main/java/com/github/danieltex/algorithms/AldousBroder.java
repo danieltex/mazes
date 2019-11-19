@@ -5,9 +5,10 @@ import java.util.Random;
 import com.github.danieltex.grid.Cell;
 import com.github.danieltex.grid.Grid;
 
-public class AldousBroder {
-    public static Grid on(Grid grid) {
-        Random rand = new Random();
+class AldousBroder implements MazeCarver {
+    private Random rand = new Random();
+
+    public Grid on(Grid grid) {
         int unvisited = grid.size() - 1;
         Cell cell = grid.randomCell();
         while (unvisited > 0) {

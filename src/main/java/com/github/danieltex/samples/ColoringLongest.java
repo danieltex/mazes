@@ -1,8 +1,9 @@
 package com.github.danieltex.samples;
 
+import static com.github.danieltex.algorithms.MazeCarvers.SIDE_WINDER;
+
 import javax.imageio.ImageIO;
 
-import com.github.danieltex.algorithms.SideWinder;
 import com.github.danieltex.grid.Cell;
 import com.github.danieltex.grid.ColoredGrid;
 import com.github.danieltex.grid.Distances;
@@ -16,7 +17,7 @@ public class ColoringLongest {
         final int rows = 30;
         final int columns = 30;
         final ColoredGrid grid = new ColoredGrid(rows, columns);
-        SideWinder.on(grid);
+        SIDE_WINDER.on(grid);
         
         final Cell start = grid.cellAt(0, 0);
         final Distances distances = start.distances();

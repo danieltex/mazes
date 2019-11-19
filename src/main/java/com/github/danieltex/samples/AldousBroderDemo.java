@@ -1,11 +1,12 @@
 package com.github.danieltex.samples;
 
+import static com.github.danieltex.algorithms.MazeCarvers.ALDOUS_BRODER;
+
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.github.danieltex.algorithms.AldousBroder;
 import com.github.danieltex.grid.Cell;
 import com.github.danieltex.grid.ColoredGrid;
 import com.github.danieltex.grid.Distances;
@@ -15,7 +16,7 @@ public class AldousBroderDemo {
         final int rows = 30;
         final int columns = 30;
         ColoredGrid grid = new ColoredGrid(rows, columns);
-        AldousBroder.on(grid);
+        ALDOUS_BRODER.on(grid);
 
         Cell start = grid.cellAt(rows/2, columns/2);
         Distances d = start.distances();

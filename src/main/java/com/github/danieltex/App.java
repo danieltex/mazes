@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
-import com.github.danieltex.algorithms.BinaryTree;
-import com.github.danieltex.algorithms.SideWinder;
+import com.github.danieltex.algorithms.MazeCarver;
+import com.github.danieltex.algorithms.MazeCarvers;
 import com.github.danieltex.grid.Cell;
 import com.github.danieltex.grid.Distances;
 import com.github.danieltex.grid.DistanceGrid;
@@ -22,17 +22,11 @@ public class App
 
         DistanceGrid grid = new DistanceGrid(rows, cols);
 
-        switch(algorithm) {
-            case "SIDEWINDER":
-                SideWinder.on(grid);
-                break;
-            case "BINARYTREE":
-                BinaryTree.on(grid);
-                break;
-            default:
-                System.out.println("Unknow option: " + args[0]);
-                break;
+        final MazeCarver mazeCarver = MazeCarvers.valueOf(algorithm);
+        if (mazeCarver == null) {
+            System.out.println("Unknow option: " + args[0]);
         }
+        mazeCarver.on(grid);
 
         // all distance from northwestest cell
         Cell start = grid.cellAt(0, 0);
