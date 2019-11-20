@@ -8,6 +8,7 @@ public enum MazeCarvers implements MazeCarver {
     HUNT_AND_KILL(new HuntAndKill()),
     SIDE_WINDER(new SideWinder()),
     WILSONS(new Wilsons()),
+    BACKTRACKER(new RecursiveBacktracker()),
     ;
 
     private final MazeCarver mazeCarver;

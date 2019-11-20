@@ -40,7 +40,7 @@ public class DeadEndCounts {
 
         for (MazeCarvers carver : sortedCarvers) {
             double percentage = averages.get(carver) * 100. / (totalCells);
-            System.out.printf("%14s : %3.0f/%3d (%.0f%%)%n", 
+            System.out.printf("%20s : %3.0f/%3d (%.0f%%)%n",
                 carver, averages.get(carver), totalCells, percentage);
         }
     }
