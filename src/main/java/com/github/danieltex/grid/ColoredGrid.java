@@ -1,12 +1,13 @@
 package com.github.danieltex.grid;
 
 import java.awt.Color;
+import java.util.Random;
 
 public class ColoredGrid extends Grid {
 
     private Distances distances;
     private Cell farthest;
-
+    private float color = new Random().nextFloat();
     public ColoredGrid(int rows, int columns) {
         super(rows, columns);
     }
@@ -25,9 +26,6 @@ public class ColoredGrid extends Grid {
         Integer distance = distances.get(cell);
         int maximum = distances.get(farthest);
         float intensity = (float) (maximum - distance) / maximum;
-        // int dark = Math.round(255 * intensity);
-        // int bright = 128 + Math.round(127 * intensity);
-        // return new Color(dark, bright, dark);
-        return Color.getHSBColor(120F/360, intensity, intensity);
+        return Color.getHSBColor(color, intensity, intensity);
     }
 }
