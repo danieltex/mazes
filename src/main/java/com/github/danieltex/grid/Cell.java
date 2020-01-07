@@ -97,5 +97,33 @@ public class Cell {
 
         return distances;
     }
+
+    /**
+     * @param east the east to set
+     */
+    public void setEast(Cell east) {
+        this.east = east;
+    }
+
+    /**
+     * @param north the north to set
+     */
+    public void setNorth(Cell north) {
+        this.north = north;
+    }
+
+    /**
+     * @param south the south to set
+     */
+    public void setSouth(Cell south) {
+        this.south = south;
+    }
+
+    /**
+     * @param west the west to set
+     */
+    public void setWest(Cell west) {
+        this.west = west;
+    }
 }
 

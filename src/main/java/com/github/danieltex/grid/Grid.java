@@ -27,12 +27,16 @@ public class Grid implements Iterable<Cell> {
 
     private final List<List<Cell>> grid;
     
-    private final Random rand = new Random();
+    protected final Random rand = new Random();
 
     public Grid(int rows, int columns) {
-        this.rows = rows;
-        this.columns = columns;
-        this.grid = prepareGrid();
+        this(new StandardGridFactory(rows, columns));
+    }
+
+    protected Grid(GridFactory gridFactory) {
+        this.rows = gridFactory.rows();
+        this.columns = gridFactory.columns();
+        this.grid = gridFactory.makeGrid();
         configureCells();
     }
 
@@ -133,6 +137,7 @@ public class Grid implements Iterable<Cell> {
     public List<Cell> allCells() {
         return grid.stream()
           .flatMap(row -> row.stream())
+          .filter(cell -> cell != null)
           .collect(toList());
     }
 
@@ -159,18 +164,6 @@ public class Grid implements Iterable<Cell> {
         return allCells().stream()
             .filter(cell -> cell.links().size() == 1)
             .collect(toList());
-    }
-
-    private List<List<Cell>> prepareGrid() {
-        List<List<Cell>> rowList = new ArrayList<>();
-        for (int i = 0; i < rows; i++) {
-            List<Cell> row = new ArrayList<>(columns);
-            for (int j = 0; j < columns; j++) {
-                row.add(new Cell(i, j));
-            }
-            rowList.add(Collections.unmodifiableList(row));
-        }
-        return Collections.unmodifiableList(rowList);
     }
 
     private void configureCells() {
